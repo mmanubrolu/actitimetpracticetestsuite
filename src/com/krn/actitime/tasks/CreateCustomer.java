@@ -41,15 +41,15 @@ public class CreateCustomer extends TestBase {
 				  Thread.sleep(10000);
 				  
 			  }else {
-				  Assert.assertFalse(isAddCustomerLinkDisplayed, "add customer link was not displayed");
+				  Assert.assertFalse(!isAddCustomerLinkDisplayed, "add customer link was not displayed");
 			  }
 			  
 		  } else {
-			  Assert.assertFalse(isAddNewCustomerLinkDisplayed, "add new customer link was not displayed");
+			  Assert.assertFalse(!isAddNewCustomerLinkDisplayed, "add new customer link was not displayed");
 		  }
 		  
 	  } else {
-		  Assert.assertFalse(isTaskLinkDisplayed, "Task link was not dispalyed");
+		  Assert.assertFalse(!isTaskLinkDisplayed, "Task link was not dispalyed");
 	  }
   }
 }

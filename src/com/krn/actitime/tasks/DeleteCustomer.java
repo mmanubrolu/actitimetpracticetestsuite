@@ -59,7 +59,7 @@ public class DeleteCustomer extends TestBase {
 				Assert.assertFalse(!isDelementDisplayed, "Proposed delete element is not displayed");
 			}
 		} else {
-
+			Assert.assertFalse(!isTaskLinkDisplayed, "tasks tab link is not displayed");
 		}
 	}
 }

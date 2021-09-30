@@ -31,8 +31,8 @@ public class CreateUser extends TestBase {
 			  driver.findElement(By.xpath("//input[@id='createUserPanel_lastNameField']")).sendKeys("Manubrolu");
 			  driver.findElement(By.xpath("//input[@id='createUserPanel_emailField']")).sendKeys("mmanubrolu@gmail.com");
 			  
-			  /*
-			  driver.findElement(By.xpath("//div[@class='simpleListMenuButton components_userGroupSelectorMenu emptyList notEmpty']//div[text()='-- department not assigned --']")).click();
+			  
+			  /*driver.findElement(By.xpath("//div[@class='simpleListMenuButton components_userGroupSelectorMenu emptyList notEmpty']//div[text()='-- department not assigned --']")).click();
 			  driver.findElement(By.xpath("(//div[text()='Production' and @class='item'])[2]")).click();
 			  */
 			  driver.findElement(By.xpath("//div[@id='createUserPanel_hireDatePlaceholder']//button[text()='Sep 30, 2021']")).click();
@@ -48,11 +48,11 @@ public class CreateUser extends TestBase {
 			  driver.findElement(By.xpath("//div[@class='panelContent']//span[text()='Close']")).click();
 			  Thread.sleep(10000);
 		  }else {
-			  Assert.assertFalse(isNewUserButtonDisplayed, "New user button was not displayed");
+			  Assert.assertFalse(!isNewUserButtonDisplayed, "New user button was not displayed");
 		  }
 		  
 	  }else {
-		  Assert.assertFalse(isUserTabDisplayed, "User tab link was not displayed.");
+		  Assert.assertFalse(!isUserTabDisplayed, "User tab link was not displayed.");
 	  }
   }
 }

@@ -1,6 +1,7 @@
 package com.krn.actitime.users;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -18,13 +19,16 @@ public class DeleteUser extends TestBase {
 	  if(isUserTabDisplayed) {
 		  userTab.click();
 		  Thread.sleep(10000);
-		  driver.findElement(By.xpath("//table[@class='userNameContainer']//span[text()='Manubrolu, Mallikarjuna Rao.']")).click();
+		  WebElement deleteItem= driver.findElement(By.xpath("//table[@class='userNameContainer']//span[text()='Manubrolu, Mallikarjuna Rao.']"));
+		  
+		  ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", deleteItem);
+		  deleteItem.click();
 		  Thread.sleep(10000);
 		  driver.findElement(By.xpath("//div[text()='DELETE']")).click();
 		  Thread.sleep(10000);
 		  driver.switchTo().alert().accept();
 	  } else {
-		  Assert.assertFalse(isUserTabDisplayed, "User tab link was not displayed.");
+		  Assert.assertFalse(!isUserTabDisplayed, "User tab link was not displayed.");
 	  }
   }
 }
