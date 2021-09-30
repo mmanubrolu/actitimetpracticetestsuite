@@ -1,6 +1,7 @@
 package com.krn.actitime.tasks;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -19,17 +20,20 @@ public class DeleteCustomer extends TestBase {
 
 		if (isTaskLinkDisplayed) {
 			System.out.println("inside task link display - Delete customer");
-			util.explicitWait(driver,tasksLink,xpath , 10);
-			//tasksLink.click();
-			
+			//util.explicitWait(driver,tasksLink,xpath , 10);
+			tasksLink.click();
+			Thread.sleep(10000);
 			WebElement deleteElement = driver
 					.findElement(By.xpath("//div[@class='itemsContainer']//div[text()='Mallikarjuna']"));
+			
+			((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", deleteElement);
 			boolean isDelementDisplayed = deleteElement.isDisplayed();
-
+		
 			if (isDelementDisplayed) {
-				util.explicitWait(driver,deleteElement, "//div[@class='itemsContainer']//div[text()='Mallikarjuna']", 10);
-				//deleteElement.click();
-				
+				//util.explicitWait(driver,deleteElement, "//div[@class='itemsContainer']//div[text()='Mallikarjuna']", 10);
+				System.out.println("inside isDelementDisplayed");
+				deleteElement.click();
+				Thread.sleep(10000);
 				
 				WebElement deleteItem = driver.findElement(By.xpath("//div[text()='Mallikarjuna' and @title='Mallikarjuna']/..//div[@class='editButton']"));
 				util.explicitWait(driver,deleteItem, "//div[text()='Mallikarjuna' and @title='Mallikarjuna']/..//div[@class='editButton']", 10);
@@ -51,7 +55,8 @@ public class DeleteCustomer extends TestBase {
 				//driver.findElement(By.xpath("//span[text()='Delete permanently']")).click();
 				
 			} else {
-				Assert.assertFalse(isDelementDisplayed, "Proposed delete element is not displayed");
+				System.out.println("inside isDelementDisplayed else block");
+				Assert.assertFalse(!isDelementDisplayed, "Proposed delete element is not displayed");
 			}
 		} else {
 
