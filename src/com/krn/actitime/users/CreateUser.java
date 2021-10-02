@@ -12,7 +12,6 @@ import com.krn.actitime.testbase.TestBase;
 public class CreateUser extends TestBase {
   @Test
   public void createUserTest() throws InterruptedException {
-	  System.out.println("Create user");
 	  WebElement userTab = driver.findElement(By.xpath("//div[@id='container_users']"));
 	  boolean isUserTabDisplayed = userTab.isDisplayed();
 	  if(isUserTabDisplayed) {
@@ -32,10 +31,14 @@ public class CreateUser extends TestBase {
 			  driver.findElement(By.xpath("//input[@id='createUserPanel_emailField']")).sendKeys("mmanubrolu@gmail.com");
 			  
 			  
-			  /*driver.findElement(By.xpath("//div[@class='simpleListMenuButton components_userGroupSelectorMenu emptyList notEmpty']//div[text()='-- department not assigned --']")).click();
-			  driver.findElement(By.xpath("(//div[text()='Production' and @class='item'])[2]")).click();
-			  */
-			  driver.findElement(By.xpath("//div[@id='createUserPanel_hireDatePlaceholder']//button[text()='Sep 30, 2021']")).click();
+			
+			  driver.findElement(By.xpath("//div[@class='simpleListMenuButton components_userGroupSelectorMenu emptyList notEmpty']//div[text()='-- department not assigned --']")).click();
+			  driver.findElement(By.xpath("//div[text()='Production' and @class='item']")).click();
+			  
+			  
+			  driver.findElement(By.xpath("(//td[@class='x-btn-right'])[4]")).click();
+			  //driver.findElement(By.xpath("//div[@id='createUserPanel_hireDatePlaceholder']//button[text()='Oct 01, 2021']")).click();
+			  
 			  driver.findElement(By.xpath("//a[@title='Next Month (Control+Right)']")).click();
 			  driver.findElement(By.xpath("//span[text()='21']")).click();
 			  //driver.findElement(By.xpath("//button[@id='ext-gen690']")).click();

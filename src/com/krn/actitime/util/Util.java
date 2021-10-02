@@ -36,17 +36,10 @@ public class Util extends TestBase {
 	}
 	
 	public void explicitWait(WebDriver driver1, WebElement element, String locator, int timeInSeconds) {
-		
-		System.out.println("element :: " + element );
-		System.out.println("locator :: " + locator );
 		WebDriverWait webDriverWait = new WebDriverWait(driver1, timeInSeconds);
 		webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
 		Actions actions = new Actions(driver1);
-		System.out.println("before click" );
 		actions.moveToElement(element).click().perform();
-		System.out.println("after click" );
-		
-		
 	}
 	
 }

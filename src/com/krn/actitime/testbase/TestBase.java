@@ -24,8 +24,6 @@ public class TestBase {
 
 	@BeforeClass
 	public void openBrowser() {
-		System.out.println("Open browser");
-
 		try {
 			prop = new Properties();
 			FileInputStream fis = new FileInputStream(
@@ -51,7 +49,6 @@ public class TestBase {
 
 	@BeforeMethod
 	public void login() throws InterruptedException {
-		System.out.println("login ");
 		String userName = prop.getProperty(Util.USER_NAME);
 		String password = prop.getProperty(Util.PASSWORD);
 		if (!userName.isEmpty() && !password.isEmpty()) {
@@ -60,14 +57,13 @@ public class TestBase {
 			driver.findElement(By.xpath("//div[text()='Login ']")).click();
 			Thread.sleep(10000);
 		} else {
-			System.out.println("User was not able to login due to user name or password empty/wrong");
+			System.err.println("User was not able to login due to user name or password empty/wrong");
 		}
 
 	}
 
 	@AfterMethod
 	public void logout() throws InterruptedException {
-		System.out.println("logout");
 		Util util = new Util();
 		Thread.sleep(10000);
 		WebElement logOut = driver.findElement(By.id("logoutLink"));
@@ -79,7 +75,7 @@ public class TestBase {
 			driver.findElement(By.xpath("//input[@id='username']")).clear();
 			driver.findElement(By.xpath("//input[@name='pwd']")).clear();
 		} else {
-			System.out.println("logout link was not displayed");
+			System.err.println("logout link was not displayed");
 
 			util.takeScreenShot();
 		}
@@ -87,7 +83,6 @@ public class TestBase {
 
 	@AfterClass
 	public void closeBrowser() {
-		System.out.println("Close browser");
 		driver.quit();
 	}
 }

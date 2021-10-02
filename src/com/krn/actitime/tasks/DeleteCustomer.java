@@ -12,7 +12,6 @@ import com.krn.actitime.util.Util;
 public class DeleteCustomer extends TestBase {
 	@Test
 	public void deleteCustomerTest() throws InterruptedException {
-		System.out.println("Delete customer");
 		String xpath= "//div[@id='container_tasks']";
 		WebElement tasksLink = driver.findElement(By.xpath(xpath));
 		boolean isTaskLinkDisplayed = tasksLink.isDisplayed();
@@ -23,10 +22,13 @@ public class DeleteCustomer extends TestBase {
 			//util.explicitWait(driver,tasksLink,xpath , 10);
 			tasksLink.click();
 			Thread.sleep(10000);
+			
+			driver.findElement(By.xpath("//div[@class='customersProjectsPanel']//input[@placeholder='Start typing name ...']")).sendKeys("Mallikarjuna");
 			WebElement deleteElement = driver
 					.findElement(By.xpath("//div[@class='itemsContainer']//div[text()='Mallikarjuna']"));
 			
-			((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", deleteElement);
+			//scrolldown the page to identify the requested element in the html page
+			//((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", deleteElement);
 			boolean isDelementDisplayed = deleteElement.isDisplayed();
 		
 			if (isDelementDisplayed) {

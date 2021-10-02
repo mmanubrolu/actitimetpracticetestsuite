@@ -13,23 +13,24 @@ import com.krn.actitime.testbase.TestBase;
 public class CreateCustomer extends TestBase {
   @Test
   public void createCustomerTest() throws InterruptedException {
-	  System.out.println("Create customer");
 	  WebElement tasksLink = driver.findElement(By.xpath("//div[@id='container_tasks']"));
 	  boolean isTaskLinkDisplayed = tasksLink.isDisplayed();
 	  if(isTaskLinkDisplayed) {
 		  tasksLink.click();
 		  Thread.sleep(10000);
+		  
 		  WebElement addNewCustomer = driver.findElement(By.xpath("//div[text()='Add New']"));
 		  boolean isAddNewCustomerLinkDisplayed = addNewCustomer.isDisplayed();
 		  if(isAddNewCustomerLinkDisplayed) {
 			  addNewCustomer.click();
+			  
 			  Thread.sleep(10000);
 			  WebElement addCustomer = driver.findElement(By.xpath("//div[text()='+ New Customer']"));
 			  boolean isAddCustomerLinkDisplayed = addCustomer.isDisplayed();
-			  
 			  if(isAddCustomerLinkDisplayed) {
 				  addCustomer.click();
 				  Thread.sleep(10000);
+				  
 				  driver.findElement(By.xpath("//input[@placeholder='Enter Customer Name' and @autocomplete='off']")).sendKeys("Mallikarjuna");
 				  driver.findElement(By.xpath("//textarea[@placeholder='Enter Customer Description']")).sendKeys("Added mallikarjuna manubrolu customer");
 				  driver.findElement(By.xpath("//div[text()='- Select Customer -' and @class='emptySelection']")).click();

@@ -11,7 +11,6 @@ import com.krn.actitime.testbase.TestBase;
 public class DeleteUser extends TestBase {
   @Test
   public void deleteUserTest() throws InterruptedException {
-	  System.out.println("Delete user");
 	  Thread.sleep(10000);
 	  WebElement userTab = driver.findElement(By.xpath("//div[@id='container_users']"));
 	  boolean isUserTabDisplayed = userTab.isDisplayed();
@@ -21,7 +20,9 @@ public class DeleteUser extends TestBase {
 		  Thread.sleep(10000);
 		  WebElement deleteItem= driver.findElement(By.xpath("//table[@class='userNameContainer']//span[text()='Manubrolu, Mallikarjuna Rao.']"));
 		  
+		  //scroll down the page to identify the element in the html page
 		  ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", deleteItem);
+		  
 		  deleteItem.click();
 		  Thread.sleep(10000);
 		  driver.findElement(By.xpath("//div[text()='DELETE']")).click();
