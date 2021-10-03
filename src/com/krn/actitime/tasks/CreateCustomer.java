@@ -13,7 +13,7 @@ import com.krn.actitime.testbase.TestBase;
 public class CreateCustomer extends TestBase {
   @Test
   public void createCustomerTest() throws InterruptedException {
-	  WebElement tasksLink = driver.findElement(By.xpath("//div[@id='container_tasks']"));
+	  WebElement tasksLink = taskPage.getTaskTabLink(driver);
 	  boolean isTaskLinkDisplayed = tasksLink.isDisplayed();
 	  if(isTaskLinkDisplayed) {
 		  tasksLink.click();

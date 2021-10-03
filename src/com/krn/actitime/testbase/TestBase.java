@@ -9,18 +9,23 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
+import com.krn.actitime.testpage.TaskPage;
 import com.krn.actitime.util.Util;
+import com.krn.actitime.util.XLSXReaderUtil;
 
 public class TestBase {
 
 	public WebDriver driver;
 	public static Properties prop;
+	public XLSXReaderUtil xlsreader;
+	public TaskPage taskPage;
 
 	@BeforeClass
 	public void openBrowser() {
@@ -34,23 +39,30 @@ public class TestBase {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		String browser = prop.getProperty(Util.BROWSER);
-		if (browser.endsWith(Util.BROWSER_NAME)) {
-			System.setProperty("webdriver.gecko.driver", "C:\\Malli Softwares\\geckodriver.exe");
+		xlsreader = new XLSXReaderUtil();
+		taskPage = new TaskPage();
+		String browser = xlsreader.getCellData("Data", "browser", 1, 0);
+		if (browser.equals(Util.BROWSER_NAME_FIREFOX)) {
+			System.setProperty("webdriver.gecko.driver", "..\\drivers\\geckodriver.exe");
 			driver = new FirefoxDriver();
+		} else if(browser.equals(Util.BROWSER_NAME_CHROME)) {
+			System.setProperty("webdriver.chrome.driver", "..\\drivers\\chromedriver.exe");
+			driver = new ChromeDriver();
 		}
 		driver.manage().window().maximize();
 		driver.get(prop.getProperty(Util.URL));
 		driver.manage().timeouts().implicitlyWait(Util.IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
 		driver.manage().timeouts().pageLoadTimeout(Util.PAGELOAD_TIMEOUT, TimeUnit.SECONDS);
-
+		
 	}
 
 	@BeforeMethod
 	public void login() throws InterruptedException {
-		String userName = prop.getProperty(Util.USER_NAME);
-		String password = prop.getProperty(Util.PASSWORD);
+		/*String userName = prop.getProperty(Util.USER_NAME);
+		String password = prop.getProperty(Util.PASSWORD);*/
+		
+		String userName = xlsreader.getCellData("Data", "loginData", 1, 0);
+		String password = xlsreader.getCellData("Data", "loginData", 1, 1);
 		if (!userName.isEmpty() && !password.isEmpty()) {
 			driver.findElement(By.xpath("//input[@id='username']")).sendKeys(userName);
 			driver.findElement(By.xpath("//input[@name='pwd']")).sendKeys(password);

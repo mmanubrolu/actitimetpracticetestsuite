@@ -16,7 +16,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.krn.actitime.testbase.TestBase;
 
 public class Util extends TestBase {
-	public static String BROWSER_NAME="firefox";
+	public static String BROWSER_NAME_FIREFOX="firefox";
+	public static String BROWSER_NAME_CHROME="chrome";
+	public static String BROWSER_NAME_IE="ie";
 	public static String BROWSER="browser";
 	public static String URL="url";
 	public static int IMPLICIT_TIMEOUT=30;
